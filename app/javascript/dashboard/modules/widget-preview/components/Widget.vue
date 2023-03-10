@@ -12,19 +12,6 @@
       <div>
         <WidgetBody :config="getWidgetBodyConfig" />
         <WidgetFooter :config="getWidgetFooterConfig" />
-        <div class="branding">
-          <a class="branding-link">
-            <img class="branding-image" :src="globalConfig.logoThumbnail" />
-            <span>
-              {{
-                useInstallationName(
-                  $t('INBOX_MGMT.WIDGET_BUILDER.BRANDING_TEXT'),
-                  globalConfig.installationName
-                )
-              }}
-            </span>
-          </a>
-        </div>
       </div>
     </div>
     <div class="widget-bubble" :style="getBubblePositionStyle">
