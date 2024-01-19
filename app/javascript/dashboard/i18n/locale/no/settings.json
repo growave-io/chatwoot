@@ -36,10 +36,13 @@
       },
       "MESSAGE_SIGNATURE_SECTION": {
         "TITLE": "Personal message signature",
-        "NOTE": "Create a personal message signature that would be added to all the messages you send from your email inbox. Use the rich content editor to create a highly personalised signature.",
+        "NOTE": "Create a unique message signature to appear at the end of every message you send from any inbox. You can also include an inline image, which is supported in live-chat, email, and API inboxes.",
         "BTN_TEXT": "Save message signature",
         "API_ERROR": "Couldn't save signature! Try again",
-        "API_SUCCESS": "Signature saved successfully"
+        "API_SUCCESS": "Signature saved successfully",
+        "IMAGE_UPLOAD_ERROR": "Couldn't upload image! Try again",
+        "IMAGE_UPLOAD_SUCCESS": "Image added successfully. Please click on save to save the signature",
+        "IMAGE_UPLOAD_SIZE_ERROR": "Image size should be less than {size}MB"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "Message Signature",
@@ -79,7 +82,8 @@
         "CONVERSATION_ASSIGNMENT": "Send e-postvarsler når en samtale er tildelt meg",
         "CONVERSATION_CREATION": "Send e-postvarsler når en ny samtale opprettes",
         "CONVERSATION_MENTION": "Send varsel på e-post når du er nevnt i en samtale",
-        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Send e-postvarsler når en ny melding opprettes i en tilordnet samtale"
+        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Send e-postvarsler når en ny melding opprettes i en tilordnet samtale",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send email notifications when a new message is created in a participating conversation"
       },
       "API": {
         "UPDATE_SUCCESS": "Dine varslingsinnstillinger er oppdatert",
@@ -92,6 +96,7 @@
         "CONVERSATION_CREATION": "Send push-varsler når en ny samtale opprettes",
         "CONVERSATION_MENTION": "Send pushvarslinger når du er nevnt i en samtale",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Send push-varsler når en ny melding opprettes i en tilordnet samtale",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send push notifications when a new message is created in a participating conversation",
         "HAS_ENABLED_PUSH": "Du har aktivert push-varsler for denne nettleseren.",
         "REQUEST_PUSH": "Aktiver push-varsler"
       },
@@ -147,6 +152,7 @@
     "SELECTOR_SUBTITLE": "Velg en konto fra følgende liste",
     "PROFILE_SETTINGS": "Brukerinnstillinger",
     "KEYBOARD_SHORTCUTS": "Keyboard Shortcuts",
+    "APPEARANCE": "Change Appearance",
     "SUPER_ADMIN_CONSOLE": "Super Admin Console",
     "LOGOUT": "Logg ut"
   },
@@ -162,6 +168,7 @@
   "COMPONENTS": {
     "CODE": {
       "BUTTON_TEXT": "Kopier",
+      "CODEPEN": "Open in CodePen",
       "COPY_SUCCESSFUL": "Koden er kopiert til utklippstavlen"
     },
     "SHOW_MORE_BLOCK": {
@@ -192,6 +199,7 @@
     "CONVERSATIONS": "Samtaler",
     "ALL_CONVERSATIONS": "All Conversations",
     "MENTIONED_CONVERSATIONS": "Mentions",
+    "PARTICIPATING_CONVERSATIONS": "Participating",
     "UNATTENDED_CONVERSATIONS": "Unattended",
     "REPORTS": "Rapporter",
     "SETTINGS": "Innstillinger",
@@ -199,6 +207,7 @@
     "HOME": "Hjem",
     "AGENTS": "Agenter",
     "AGENT_BOTS": "Bots",
+    "AUDIT_LOGS": "Audit Logs",
     "INBOXES": "Innbokser",
     "NOTIFICATIONS": "Varsler",
     "CANNED_RESPONSES": "Forhåndslagde svar",
@@ -233,12 +242,13 @@
     "REPORTS_OVERVIEW": "Overview",
     "FACEBOOK_REAUTHORIZE": "Facebook-tilkoblingen din er utløpt, koble til Facebook-siden din for å fortsette tjenester",
     "HELP_CENTER": {
-      "TITLE": "Help Center (Beta)",
+      "TITLE": "Help Center",
       "ALL_ARTICLES": "All Articles",
       "MY_ARTICLES": "My Articles",
       "DRAFT": "Draft",
       "ARCHIVED": "Archived",
       "CATEGORY": "Category",
+      "SETTINGS": "Innstillinger",
       "CATEGORY_EMPTY_MESSAGE": "No categories found"
     },
     "SET_AUTO_OFFLINE": {

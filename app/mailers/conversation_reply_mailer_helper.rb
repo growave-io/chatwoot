@@ -1,7 +1,7 @@
 module ConversationReplyMailerHelper
   def prepare_mail(cc_bcc_enabled)
     @options = {
-      to: @contact&.email,
+      to: to_emails,
       from: email_from,
       reply_to: email_reply_to,
       subject: mail_subject,
@@ -15,6 +15,8 @@ module ConversationReplyMailerHelper
     end
     ms_smtp_settings
     set_delivery_method
+
+    Rails.logger.info("Email sent from #{email_from} to #{to_emails} with subject #{mail_subject}")
 
     mail(@options)
   end
@@ -72,7 +74,7 @@ module ConversationReplyMailerHelper
   end
 
   def email_from
-    email_microsoft_auth_enabled || email_smtp_enabled ? @channel.email : from_email_with_name
+    email_microsoft_auth_enabled || email_smtp_enabled ? channel_email_with_name : from_email_with_name
   end
 
   def email_reply_to

@@ -36,10 +36,13 @@
       },
       "MESSAGE_SIGNATURE_SECTION": {
         "TITLE": "Chữ ký tin nhắn cá nhân",
-        "NOTE": "Tạo chữ ký thư cá nhân sẽ được thêm vào tất cả các thư bạn gửi từ hộp thư email của mình. Sử dụng trình chỉnh sửa nội dung phong phú để tạo chữ ký được cá nhân hóa cao.",
+        "NOTE": "Create a unique message signature to appear at the end of every message you send from any inbox. You can also include an inline image, which is supported in live-chat, email, and API inboxes.",
         "BTN_TEXT": "Lưu chữ ký tin nhắn",
         "API_ERROR": "Không thể lưu chữ ký! Thử lại",
-        "API_SUCCESS": "Chữ ký được lưu thành công"
+        "API_SUCCESS": "Chữ ký được lưu thành công",
+        "IMAGE_UPLOAD_ERROR": "Couldn't upload image! Try again",
+        "IMAGE_UPLOAD_SUCCESS": "Image added successfully. Please click on save to save the signature",
+        "IMAGE_UPLOAD_SIZE_ERROR": "Kích thước ảnh phải nhỏ hơn {size}MB"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "Chữ ký tin nhắn",
@@ -79,7 +82,8 @@
         "CONVERSATION_ASSIGNMENT": "Gửi thông báo qua email khi cuộc trò chuyện được chỉ định cho tôi",
         "CONVERSATION_CREATION": "Gửi thông báo qua email khi cuộc trò chuyện mới được tạo",
         "CONVERSATION_MENTION": "Gửi thông báo email khi bạn được nhắc đến trong 1 cuộc trò chuyện",
-        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo email khi có một tin nhắn mới được tạo trong cuộc trò chuyện được phân công"
+        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo email khi có một tin nhắn mới được tạo trong cuộc trò chuyện được phân công",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send email notifications when a new message is created in a participating conversation"
       },
       "API": {
         "UPDATE_SUCCESS": "Tùy chọn thông báo của bạn đã được cập nhật thành công",
@@ -92,6 +96,7 @@
         "CONVERSATION_CREATION": "Gửi thông báo khi cuộc trò chuyện mới được tạo",
         "CONVERSATION_MENTION": "Gửi thông báo đẩy khi bạn được nhắc đến trong 1 cuộc trò chuyện",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo đẩy khi có một tin nhắn mới được tạo trong cuộc trò chuyện được phân công",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send push notifications when a new message is created in a participating conversation",
         "HAS_ENABLED_PUSH": "Bạn đã bật tính năng thông báo cho trình duyệt này.",
         "REQUEST_PUSH": "Bật thông báo"
       },
@@ -147,6 +152,7 @@
     "SELECTOR_SUBTITLE": "Chọn một tài khoản từ danh sách sau",
     "PROFILE_SETTINGS": "Cài Đặt Hồ Sơ Cá Nhân",
     "KEYBOARD_SHORTCUTS": "Phím tắt",
+    "APPEARANCE": "Change Appearance",
     "SUPER_ADMIN_CONSOLE": "Bảng điều khiển dành cho quản trị viên cấp cao",
     "LOGOUT": "Đăng xuất"
   },
@@ -162,6 +168,7 @@
   "COMPONENTS": {
     "CODE": {
       "BUTTON_TEXT": "Sao Chép",
+      "CODEPEN": "Open in CodePen",
       "COPY_SUCCESSFUL": "Copied to clipboard"
     },
     "SHOW_MORE_BLOCK": {
@@ -192,6 +199,7 @@
     "CONVERSATIONS": "Cuộc trò chuyện",
     "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện",
     "MENTIONED_CONVERSATIONS": "Nhắn đến",
+    "PARTICIPATING_CONVERSATIONS": "Participating",
     "UNATTENDED_CONVERSATIONS": "Không giám sát",
     "REPORTS": "Báo cáo",
     "SETTINGS": "Cài Đặt",
@@ -199,6 +207,7 @@
     "HOME": "Trang Chủ",
     "AGENTS": "Đại lý",
     "AGENT_BOTS": "Bots",
+    "AUDIT_LOGS": "Audit Logs",
     "INBOXES": "Hộp thư đến",
     "NOTIFICATIONS": "Thông báo",
     "CANNED_RESPONSES": "Thư mẫu phẩn hồi",
@@ -233,12 +242,13 @@
     "REPORTS_OVERVIEW": "Tổng quan",
     "FACEBOOK_REAUTHORIZE": "Kết nối Facebook của bạn đã hết hạn, vui lòng kết nối lại trang Facebook của bạn để tiếp tục dịch vụ",
     "HELP_CENTER": {
-      "TITLE": "Trung tâm trợ giúp (Thử nghiệm)",
+      "TITLE": "Help Center",
       "ALL_ARTICLES": "Tất cả các bài",
       "MY_ARTICLES": "Các bài của tôi",
       "DRAFT": "Nháp",
       "ARCHIVED": "Lưu trữ",
       "CATEGORY": "Loại",
+      "SETTINGS": "Cài đặt",
       "CATEGORY_EMPTY_MESSAGE": "Không tìm thấy danh mục nào"
     },
     "SET_AUTO_OFFLINE": {

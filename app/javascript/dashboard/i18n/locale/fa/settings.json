@@ -36,10 +36,13 @@
       },
       "MESSAGE_SIGNATURE_SECTION": {
         "TITLE": "امضای پیام شخصی",
-        "NOTE": "یک امضای پیام شخصی ایجاد کنید که به همه پیام‌هایی که از صندوق ورودی ایمیل ارسال می‌کنید اضافه شود. از ویرایشگر محتوای غنی برای ایجاد یک امضای بسیار شخصی استفاده کنید.",
+        "NOTE": "یک امضای منحصر به فرد ایجاد کنید تا در انتهای تمام پیام هایی که از هر صندوق ورودی ارسال می کنید نمایش داده شود. همچنین می‌توانید یک تصویر درون خطی اضافه کنید که در چت، ایمیل و صندوق‌های ورودی API پشتیبانی می‌شود.",
         "BTN_TEXT": "ذخیره امضای پیام",
         "API_ERROR": "امضا ذخیره نشد! دوباره امتحان کنید",
-        "API_SUCCESS": "امضا با موفقیت ذخیره شد"
+        "API_SUCCESS": "امضا با موفقیت ذخیره شد",
+        "IMAGE_UPLOAD_ERROR": "تصویر ارسال نشد! دوباره امتحان کنید",
+        "IMAGE_UPLOAD_SUCCESS": "تصویر با موفقیت اضافه شد. لطفا بر روی ذخیره کلیک کنید تا امضا ذخیره شود",
+        "IMAGE_UPLOAD_SIZE_ERROR": "اندازه تصویر باید کمتر از {size} مگابایت باشد"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "امضای پیام",
@@ -65,12 +68,12 @@
           "ALL_CONVERSATIONS": "همه گفتگوها"
         },
         "DEFAULT_TONE": {
-          "TITLE": "Alert tone:"
+          "TITLE": "صدای هشدار:"
         },
         "CONDITIONS": {
           "TITLE": "شرط‌های هشدار:",
-          "CONDITION_ONE": "Send audio alerts only if the browser window is not active",
-          "CONDITION_TWO": "Send alerts every 30s until all the assigned conversations are read"
+          "CONDITION_ONE": "فقط در صورتی که پنجره مرورگر فعال نباشد، هشدارهای صوتی را ارسال کنید",
+          "CONDITION_TWO": "هر 30 ثانیه یک بار هشدار ارسال کنید تا زمانی که تمام مکالمات اختصاص داده شده خوانده شود"
         }
       },
       "EMAIL_NOTIFICATIONS_SECTION": {
@@ -79,7 +82,8 @@
         "CONVERSATION_ASSIGNMENT": "هر وقت گفتگویی به من اختصاص داده شد،‌ ایمیل بفرست",
         "CONVERSATION_CREATION": "هر وقت گفتگوی جدیدی شروع شد برای من ایمیل بفرست",
         "CONVERSATION_MENTION": "هنگامی که از شما در گفتگو نام برده می‌شود، از طریق ایمیل آگاه‌سازی ارسال کن",
-        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "با ایجاد پیام جدید در مکالمه اختصاصی ، اعلان های ایمیل را ارسال کنید"
+        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "با ایجاد پیام جدید در مکالمه اختصاصی ، اعلان های ایمیل را ارسال کنید",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "هنگامی که یک پیام جدید در یک مکالمه شرکت کننده ایجاد می شود، اعلان های ایمیل ارسال کنید"
       },
       "API": {
         "UPDATE_SUCCESS": "تغییرات تنظیمات اعلامیه‌ها با موفقیت ثبت شد",
@@ -92,6 +96,7 @@
         "CONVERSATION_CREATION": "هر وقت گفتگوی جدیدی شروع شد برای من پوش نوتیفیکیشن بفرست",
         "CONVERSATION_MENTION": "هنگامی که از شما در مکالمه نام برده می شود پوش نوتیفیکیشن ارسال کنید",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "وقتی پیام جدیدی در مکالمه اختصاص داده شده ایجاد می شود ، پوش نوتیفیکیشن را ارسال کنید",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "هنگامی که یک پیام جدید در یک مکالمه شرکت کننده ایجاد می شود، اعلان فشار ارسال کنید",
         "HAS_ENABLED_PUSH": "در این مرورگر پوش نوتیفیکیشن را فعال کرده‌اید",
         "REQUEST_PUSH": "فعال کردن پوش نوتیفیکیشن"
       },
@@ -147,6 +152,7 @@
     "SELECTOR_SUBTITLE": "از لیست یکی از حساب‌ها را انتخاب کنید",
     "PROFILE_SETTINGS": "تنظیمات پروفایل",
     "KEYBOARD_SHORTCUTS": "میانبرهای صفحه‌کلید",
+    "APPEARANCE": "تغییر ظاهر",
     "SUPER_ADMIN_CONSOLE": "کنسول سوپر مدیر",
     "LOGOUT": "خروج از حساب‌کاربری"
   },
@@ -162,6 +168,7 @@
   "COMPONENTS": {
     "CODE": {
       "BUTTON_TEXT": "کپی",
+      "CODEPEN": "در CodePen باز کنید",
       "COPY_SUCCESSFUL": "کد به حافظه کپی شد"
     },
     "SHOW_MORE_BLOCK": {
@@ -192,6 +199,7 @@
     "CONVERSATIONS": "گفتگوها",
     "ALL_CONVERSATIONS": "همه گفتگوها",
     "MENTIONED_CONVERSATIONS": "اشاره",
+    "PARTICIPATING_CONVERSATIONS": "شرکت کننده",
     "UNATTENDED_CONVERSATIONS": "بی سرپرست",
     "REPORTS": "گزارشات",
     "SETTINGS": "تنظیمات",
@@ -199,6 +207,7 @@
     "HOME": "صفحه اصلی",
     "AGENTS": "ایجنت ها",
     "AGENT_BOTS": "ربات‌ها",
+    "AUDIT_LOGS": "بررسی لاگ هاگزارش های حسابرسی",
     "INBOXES": "صندوق‌های ورودی",
     "NOTIFICATIONS": "اعلان ها",
     "CANNED_RESPONSES": "پاسخ‌های آماده",
@@ -233,12 +242,13 @@
     "REPORTS_OVERVIEW": "بررسی اجمالی",
     "FACEBOOK_REAUTHORIZE": "اتصال فیس بوک شما منقضی شده است ، لطفاً برای ادامه خدمات دوباره صفحه فیس بوک خود را متصل کنید",
     "HELP_CENTER": {
-      "TITLE": "مرکز راهنمایی (آزمایشی)",
+      "TITLE": "مرکز راهنما",
       "ALL_ARTICLES": "همه مقالات",
       "MY_ARTICLES": "مقالات من",
       "DRAFT": "پیش‌نویس",
       "ARCHIVED": "بایگانی شد",
       "CATEGORY": "دسته‌بندی",
+      "SETTINGS": "تنظیمات",
       "CATEGORY_EMPTY_MESSAGE": "هیچ دسته‌بندی‌ای یافت نشد"
     },
     "SET_AUTO_OFFLINE": {

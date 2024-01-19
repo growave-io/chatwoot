@@ -23,11 +23,43 @@ class ActionCableConnector extends BaseActionCableConnector {
       'contact.updated': this.onContactUpdate,
       'conversation.mentioned': this.onConversationMentioned,
       'notification.created': this.onNotificationCreated,
+      'notification.deleted': this.onNotificationDeleted,
       'first.reply.created': this.onFirstReplyCreated,
       'conversation.read': this.onConversationRead,
       'conversation.updated': this.onConversationUpdated,
+      'account.cache_invalidated': this.onCacheInvalidate,
     };
   }
+
+  onReconnect = () => {
+    this.syncActiveConversationMessages();
+  };
+
+  onDisconnected = () => {
+    this.setActiveConversationLastMessageId();
+  };
+
+  setActiveConversationLastMessageId = () => {
+    const {
+      params: { conversation_id },
+    } = this.app.$route;
+    if (conversation_id) {
+      this.app.$store.dispatch('setConversationLastMessageId', {
+        conversationId: Number(conversation_id),
+      });
+    }
+  };
+
+  syncActiveConversationMessages = () => {
+    const {
+      params: { conversation_id },
+    } = this.app.$route;
+    if (conversation_id) {
+      this.app.$store.dispatch('syncActiveConversationMessages', {
+        conversationId: Number(conversation_id),
+      });
+    }
+  };
 
   isAValidEvent = data => {
     return this.app.$store.getters.getCurrentAccountId === data.account_id;
@@ -71,13 +103,23 @@ class ActionCableConnector extends BaseActionCableConnector {
     this.app.$store.dispatch('updateConversation', data);
   };
 
+  // eslint-disable-next-line class-methods-use-this
   onLogout = () => AuthAPI.logout();
 
   onMessageCreated = data => {
+    const {
+      conversation: { last_activity_at: lastActivityAt },
+      conversation_id: conversationId,
+    } = data;
     DashboardAudioNotificationHelper.onNewMessage(data);
     this.app.$store.dispatch('addMessage', data);
+    this.app.$store.dispatch('updateConversationLastActivity', {
+      lastActivityAt,
+      conversationId,
+    });
   };
 
+  // eslint-disable-next-line class-methods-use-this
   onReload = () => window.location.reload();
 
   onStatusChange = data => {
@@ -132,6 +174,7 @@ class ActionCableConnector extends BaseActionCableConnector {
     }, 30000);
   };
 
+  // eslint-disable-next-line class-methods-use-this
   fetchConversationStats = () => {
     bus.$emit('fetch_conversation_stats');
     bus.$emit('fetch_overview_reports');
@@ -153,8 +196,20 @@ class ActionCableConnector extends BaseActionCableConnector {
     this.app.$store.dispatch('notifications/addNotification', data);
   };
 
+  onNotificationDeleted = data => {
+    this.app.$store.dispatch('notifications/deleteNotification', data);
+  };
+
+  // eslint-disable-next-line class-methods-use-this
   onFirstReplyCreated = () => {
     bus.$emit('fetch_overview_reports');
+  };
+
+  onCacheInvalidate = data => {
+    const keys = data.cache_keys;
+    this.app.$store.dispatch('labels/revalidate', { newKey: keys.label });
+    this.app.$store.dispatch('inboxes/revalidate', { newKey: keys.inbox });
+    this.app.$store.dispatch('teams/revalidate', { newKey: keys.team });
   };
 }
 

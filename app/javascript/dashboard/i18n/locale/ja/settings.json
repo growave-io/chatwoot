@@ -36,10 +36,13 @@
       },
       "MESSAGE_SIGNATURE_SECTION": {
         "TITLE": "Personal message signature",
-        "NOTE": "Create a personal message signature that would be added to all the messages you send from your email inbox. Use the rich content editor to create a highly personalised signature.",
+        "NOTE": "Create a unique message signature to appear at the end of every message you send from any inbox. You can also include an inline image, which is supported in live-chat, email, and API inboxes.",
         "BTN_TEXT": "Save message signature",
         "API_ERROR": "Couldn't save signature! Try again",
-        "API_SUCCESS": "Signature saved successfully"
+        "API_SUCCESS": "Signature saved successfully",
+        "IMAGE_UPLOAD_ERROR": "Couldn't upload image! Try again",
+        "IMAGE_UPLOAD_SUCCESS": "Image added successfully. Please click on save to save the signature",
+        "IMAGE_UPLOAD_SIZE_ERROR": "Image size should be less than {size}MB"
       },
       "MESSAGE_SIGNATURE": {
         "LABEL": "Message Signature",
@@ -79,7 +82,8 @@
         "CONVERSATION_ASSIGNMENT": "会話が自分に割り当てられたときにメールで通知を送信する",
         "CONVERSATION_CREATION": "新しい会話が作成されたときにメールで通知を送信する",
         "CONVERSATION_MENTION": "Send email notifications when you are mentioned in a conversation",
-        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "割り当てられた会話で新しいメッセージが作成されたときにメールで通知を送信します"
+        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "割り当てられた会話で新しいメッセージが作成されたときにメールで通知を送信します",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send email notifications when a new message is created in a participating conversation"
       },
       "API": {
         "UPDATE_SUCCESS": "通知設定が正常に更新されました",
@@ -92,6 +96,7 @@
         "CONVERSATION_CREATION": "新しい会話が作成されたときにプッシュ通知を送信する",
         "CONVERSATION_MENTION": "Send push notifications when you are mentioned in a conversation",
         "ASSIGNED_CONVERSATION_NEW_MESSAGE": "割り当てられた会話で新しいメッセージが作成されたときにプッシュ通知を送信する",
+        "PARTICIPATING_CONVERSATION_NEW_MESSAGE": "Send push notifications when a new message is created in a participating conversation",
         "HAS_ENABLED_PUSH": "このブラウザーでプッシュ通知を有効にしました。",
         "REQUEST_PUSH": "プッシュ通知を有効にする"
       },
@@ -147,6 +152,7 @@
     "SELECTOR_SUBTITLE": "次のリストからアカウントを選択してください",
     "PROFILE_SETTINGS": "プロフィール設定",
     "KEYBOARD_SHORTCUTS": "Keyboard Shortcuts",
+    "APPEARANCE": "Change Appearance",
     "SUPER_ADMIN_CONSOLE": "Super Admin Console",
     "LOGOUT": "ログアウト"
   },
@@ -162,6 +168,7 @@
   "COMPONENTS": {
     "CODE": {
       "BUTTON_TEXT": "コピー",
+      "CODEPEN": "Open in CodePen",
       "COPY_SUCCESSFUL": "コードが正常にクリップボードにコピーされました"
     },
     "SHOW_MORE_BLOCK": {
@@ -192,6 +199,7 @@
     "CONVERSATIONS": "会話データ",
     "ALL_CONVERSATIONS": "All Conversations",
     "MENTIONED_CONVERSATIONS": "Mentions",
+    "PARTICIPATING_CONVERSATIONS": "Participating",
     "UNATTENDED_CONVERSATIONS": "Unattended",
     "REPORTS": "レポート",
     "SETTINGS": "設定",
@@ -199,6 +207,7 @@
     "HOME": "ホーム",
     "AGENTS": "担当者",
     "AGENT_BOTS": "Bots",
+    "AUDIT_LOGS": "Audit Logs",
     "INBOXES": "受信トレイ",
     "NOTIFICATIONS": "Notifications",
     "CANNED_RESPONSES": "定型文",
@@ -233,12 +242,13 @@
     "REPORTS_OVERVIEW": "Overview",
     "FACEBOOK_REAUTHORIZE": "Facebookの接続が期限切れになりました。サービスを継続するには、Facebookページを再接続してください。",
     "HELP_CENTER": {
-      "TITLE": "Help Center (Beta)",
+      "TITLE": "Help Center",
       "ALL_ARTICLES": "All Articles",
       "MY_ARTICLES": "My Articles",
       "DRAFT": "Draft",
       "ARCHIVED": "Archived",
       "CATEGORY": "Category",
+      "SETTINGS": "設定",
       "CATEGORY_EMPTY_MESSAGE": "No categories found"
     },
     "SET_AUTO_OFFLINE": {

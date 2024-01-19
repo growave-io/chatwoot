@@ -25,7 +25,9 @@ class Messages::Facebook::MessageBuilder < Messages::Messenger::MessageBuilder
       build_contact_inbox
       build_message
     end
-  rescue Koala::Facebook::AuthenticationError
+  rescue Koala::Facebook::AuthenticationError => e
+    Rails.logger.warn("Facebook authentication error for inbox: #{@inbox.id} with error: #{e.message}")
+    Rails.logger.error e
     @inbox.channel.authorization_error!
   rescue StandardError => e
     ChatwootExceptionTracker.new(e, account: @inbox.account).capture_exception
@@ -93,6 +95,9 @@ class Messages::Facebook::MessageBuilder < Messages::Messenger::MessageBuilder
       message_type: @message_type,
       content: response.content,
       source_id: response.identifier,
+      content_attributes: {
+        in_reply_to_external_id: response.in_reply_to_external_id
+      },
       sender: @outgoing_echo ? nil : @contact_inbox.contact
     }
   end
@@ -105,22 +110,32 @@ class Messages::Facebook::MessageBuilder < Messages::Messenger::MessageBuilder
     }
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def contact_params
     begin
       k = Koala::Facebook::API.new(@inbox.channel.page_access_token) if @inbox.facebook?
       result = k.get_object(@sender_id) || {}
-    rescue Koala::Facebook::AuthenticationError
+    rescue Koala::Facebook::AuthenticationError => e
+      Rails.logger.warn("Facebook authentication error for inbox: #{@inbox.id} with error: #{e.message}")
+      Rails.logger.error e
       @inbox.channel.authorization_error!
       raise
     rescue Koala::Facebook::ClientError => e
       result = {}
       # OAuthException, code: 100, error_subcode: 2018218, message: (#100) No profile available for this user
       # We don't need to capture this error as we don't care about contact params in case of echo messages
-      ChatwootExceptionTracker.new(e, account: @inbox.account).capture_exception unless @outgoing_echo
+      if e.message.include?('2018218')
+        Rails.logger.warn e
+      else
+        ChatwootExceptionTracker.new(e, account: @inbox.account).capture_exception unless @outgoing_echo
+      end
     rescue StandardError => e
       result = {}
       ChatwootExceptionTracker.new(e, account: @inbox.account).capture_exception
     end
     process_contact_params_result(result)
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end

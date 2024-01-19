@@ -215,6 +215,26 @@ describe Telegram::IncomingMessageService do
       end
     end
 
+    context 'when the API call to get the download path returns an error' do
+      it 'does not process the attachment' do
+        allow(telegram_channel.inbox.channel).to receive(:get_telegram_file_path).and_return(nil)
+        params = {
+          'update_id' => 2_342_342_343_242,
+          'message' => {
+            'document' => {
+              'file_id' => 'AwADBAADbXXXXXXXXXXXGBdhD2l6_XX',
+              'file_name' => 'Screenshot 2021-09-27 at 2.01.14 PM.png',
+              'mime_type' => 'application/png',
+              'file_size' => 536_392
+            }
+          }.merge(message_params)
+        }.with_indifferent_access
+
+        described_class.new(inbox: telegram_channel.inbox, params: params).perform
+        expect(telegram_channel.inbox.messages.first.attachments.count).to eq(0)
+      end
+    end
+
     context 'when valid location message params' do
       it 'creates appropriate conversations, message and contacts' do
         params = {
@@ -230,6 +250,34 @@ describe Telegram::IncomingMessageService do
         expect(telegram_channel.inbox.conversations.count).not_to eq(0)
         expect(Contact.all.first.name).to eq('Sojan Jose')
         expect(telegram_channel.inbox.messages.first.attachments.first.file_type).to eq('location')
+      end
+    end
+
+    context 'when valid callback_query params' do
+      it 'creates appropriate conversations, message and contacts' do
+        params = {
+          'update_id' => 2_342_342_343_242,
+          'callback_query' => {
+            'id' => '2342342309929423',
+            'from' => {
+              'id' => 5_171_248,
+              'is_bot' => false,
+              'first_name' => 'Sojan',
+              'last_name' => 'Jose',
+              'username' => 'sojan',
+              'language_code' => 'en',
+              'is_premium' => true
+            },
+            'message' => message_params,
+            'chat_instance' => '-89923842384923492',
+            'data' => 'Option 1'
+          }
+        }.with_indifferent_access
+
+        described_class.new(inbox: telegram_channel.inbox, params: params).perform
+        expect(telegram_channel.inbox.conversations.count).not_to eq(0)
+        expect(Contact.all.first.name).to eq('Sojan Jose')
+        expect(telegram_channel.inbox.messages.first.content).to eq('Option 1')
       end
     end
   end

@@ -35,6 +35,48 @@
         "TEXT": "Всі"
       }
     },
+    "VIEW_FILTER": "Вигляд",
+    "SORT_TOOLTIP_LABEL": "Відсортувати розмови",
+    "CHAT_SORT": {
+      "STATUS": "Статус",
+      "ORDER_BY": "Сортувати за"
+    },
+    "CHAT_TIME_STAMP": {
+      "CREATED": {
+        "LATEST": "Створено",
+        "OLDEST": "Створений в:"
+      },
+      "LAST_ACTIVITY": {
+        "NOT_ACTIVE": "Остання активність:",
+        "ACTIVE": "Остання активність"
+      }
+    },
+    "SORT_ORDER_ITEMS": {
+      "last_activity_at_asc": {
+        "TEXT": "Last activity: Oldest first"
+      },
+      "last_activity_at_desc": {
+        "TEXT": "Last activity: Newest first"
+      },
+      "created_at_desc": {
+        "TEXT": "Created at: Newest first"
+      },
+      "created_at_asc": {
+        "TEXT": "Created at: Oldest first"
+      },
+      "priority_desc": {
+        "TEXT": "Priority: Highest first"
+      },
+      "priority_asc": {
+        "TEXT": "Priority: Lowest first"
+      },
+      "waiting_since_asc": {
+        "TEXT": "Pending Response: Longest first"
+      },
+      "waiting_since_desc": {
+        "TEXT": "Pending Response: Shortest first"
+      }
+    },
     "ATTACHMENTS": {
       "image": {
         "CONTENT": "Повідомлення з картинкою"
@@ -53,6 +95,24 @@
       },
       "fallback": {
         "CONTENT": "поділився посиланням"
+      }
+    },
+    "CHAT_SORT_BY_FILTER": {
+      "TITLE": "Відсортувати розмови",
+      "DROPDOWN_TITLE": "Сортувати за",
+      "ITEMS": {
+        "LATEST": {
+          "NAME": "Остання активність о",
+          "LABEL": "Остання активність"
+        },
+        "CREATED_AT": {
+          "NAME": "Створений в",
+          "LABEL": "Створений в"
+        },
+        "LAST_USER_MESSAGE_AT": {
+          "NAME": "Дата останнього повідомлення",
+          "LABEL": "Останнє повідомлення"
+        }
       }
     },
     "RECEIVED_VIA_EMAIL": "Отримано електронною поштою",

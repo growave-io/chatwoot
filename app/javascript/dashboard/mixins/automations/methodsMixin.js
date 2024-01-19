@@ -169,8 +169,9 @@ export default {
     showActionInput(action) {
       if (action === 'send_email_to_team' || action === 'send_message')
         return false;
-      const type = this.automationActionTypes.find(i => i.key === action)
-        .inputType;
+      const type = this.automationActionTypes.find(
+        i => i.key === action
+      ).inputType;
       return !!type;
     },
     resetAction(index) {
@@ -197,6 +198,12 @@ export default {
           return {
             ...condition,
             values: condition.values[0],
+          };
+        }
+        if (inputType === 'comma_separated_plain_text') {
+          return {
+            ...condition,
+            values: condition.values.join(','),
           };
         }
         return {
@@ -251,16 +258,17 @@ export default {
     },
     getActionDropdownValues(type) {
       const { agents, labels, teams } = this;
-      return getActionOptions({ agents, labels, teams, type });
+      return getActionOptions({ agents, labels, teams, languages, type });
     },
     manifestCustomAttributes() {
       const conversationCustomAttributesRaw = this.$store.getters[
         'attributes/getAttributesByModel'
       ]('conversation_attribute');
 
-      const contactCustomAttributesRaw = this.$store.getters[
-        'attributes/getAttributesByModel'
-      ]('contact_attribute');
+      const contactCustomAttributesRaw =
+        this.$store.getters['attributes/getAttributesByModel'](
+          'contact_attribute'
+        );
       const conversationCustomAttributeTypes = generateCustomAttributeTypes(
         conversationCustomAttributesRaw,
         'conversation_attribute'

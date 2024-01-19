@@ -77,9 +77,41 @@ class Channel::Telegram < ApplicationRecord
     errors.add(:bot_token, 'error setting up the webook') unless response.success?
   end
 
+  def chat_id(message)
+    message.conversation[:additional_attributes]['chat_id']
+  end
+
+  def reply_to_message_id(message)
+    message.content_attributes['in_reply_to_external_id']
+  end
+
   def send_message(message)
-    response = message_request(message.conversation[:additional_attributes]['chat_id'], message.content)
+    response = message_request(chat_id(message), message.content, reply_markup(message), reply_to_message_id(message))
+    process_error(message, response)
     response.parsed_response['result']['message_id'] if response.success?
+  end
+
+  def process_error(message, response)
+    return unless response.parsed_response['ok'] == false
+
+    # https://github.com/TelegramBotAPI/errors/tree/master/json
+    message.external_error = "#{response.parsed_response['error_code']}, #{response.parsed_response['description']}"
+    message.status = :failed
+    message.save!
+  end
+
+  def reply_markup(message)
+    return unless message.content_type == 'input_select'
+
+    {
+      one_time_keyboard: true,
+      inline_keyboard: message.content_attributes['items'].map do |item|
+        [{
+          text: item['title'],
+          callback_data: item['value']
+        }]
+      end
+    }.to_json
   end
 
   def send_attachments(message)
@@ -88,36 +120,54 @@ class Channel::Telegram < ApplicationRecord
     telegram_attachments = []
     message.attachments.each do |attachment|
       telegram_attachment = {}
-
-      case attachment[:file_type]
-      when 'audio'
-        telegram_attachment[:type] = 'audio'
-      when 'image'
-        telegram_attachment[:type] = 'photo'
-      when 'file'
-        telegram_attachment[:type] = 'document'
-      end
+      telegram_attachment[:type] = attachment_type(attachment[:file_type])
       telegram_attachment[:media] = attachment.download_url
       telegram_attachments << telegram_attachment
     end
 
-    response = attachments_request(message.conversation[:additional_attributes]['chat_id'], telegram_attachments)
+    response = attachments_request(chat_id(message), telegram_attachments, reply_to_message_id(message))
+    process_error(message, response)
     response.parsed_response['result'].first['message_id'] if response.success?
   end
 
-  def attachments_request(chat_id, attachments)
+  def attachment_type(file_type)
+    file_type_mappings = {
+      'audio' => 'audio',
+      'image' => 'photo',
+      'file' => 'document',
+      'video' => 'video'
+    }
+    file_type_mappings[file_type]
+  end
+
+  def attachments_request(chat_id, attachments, reply_to_message_id)
     HTTParty.post("#{telegram_api_url}/sendMediaGroup",
                   body: {
                     chat_id: chat_id,
-                    media: attachments.to_json
+                    media: attachments.to_json,
+                    reply_to_message_id: reply_to_message_id
                   })
   end
 
-  def message_request(chat_id, text)
+  def convert_markdown_to_telegram(text)
+    ## supported characters : https://core.telegram.org/bots/api#markdown-style
+    ## To implement MarkdownV2, we will need to do a lot of escaping
+
+    # Convert bold - double asterisks to single asterisk in Telegram
+    # Chatwoot uses double asterisks for bold, while telegram used single asterisk
+    text.gsub!(/\*\*(.*?)\*\*/, '*\1*')
+    text
+  end
+
+  def message_request(chat_id, text, reply_markup = nil, reply_to_message_id = nil)
+    text_to_md = convert_markdown_to_telegram(text)
     HTTParty.post("#{telegram_api_url}/sendMessage",
                   body: {
                     chat_id: chat_id,
-                    text: text
+                    text: text_to_md,
+                    reply_markup: reply_markup,
+                    parse_mode: 'Markdown',
+                    reply_to_message_id: reply_to_message_id
                   })
   end
 end

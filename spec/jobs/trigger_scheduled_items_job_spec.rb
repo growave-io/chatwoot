@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TriggerScheduledItemsJob, type: :job do
+RSpec.describe TriggerScheduledItemsJob do
   subject(:job) { described_class.perform_later }
 
   let(:account) { create(:account) }
@@ -23,6 +23,11 @@ RSpec.describe TriggerScheduledItemsJob, type: :job do
 
     it 'triggers Conversations::ReopenSnoozedConversationsJob' do
       expect(Conversations::ReopenSnoozedConversationsJob).to receive(:perform_later).once
+      described_class.perform_now
+    end
+
+    it 'triggers Notification::ReopenSnoozedNotificationsJob' do
+      expect(Notification::ReopenSnoozedNotificationsJob).to receive(:perform_later).once
       described_class.perform_now
     end
 

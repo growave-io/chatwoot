@@ -15,4 +15,6 @@ export const FEATURE_FLAGS = {
   REPORTS: 'reports',
   TEAM_MANAGEMENT: 'team_management',
   VOICE_RECORDER: 'voice_recorder',
+  AUDIT_LOGS: 'audit_logs',
+  INSERT_ARTICLE_IN_REPLY: 'insert_article_in_reply',
 };
